@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Listing Page</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./css/styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav class="navbar container flex flex-wrap">
+        <!-- Hamburger Icon -->
+        <div class="hamburger show-mobile" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div class="logo">ENIA</div>
+
+        <div
+          class="flex mobile-navigation space-between"
+          id="responsive-navigation"
+        >
+          <div class="mobile-navigation-head flex space-between">
+            <div class="show-mobile">Filters</div>
+            <div
+              class="closeMobileNavigation show-mobile"
+              id="mobile-navigation-close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-x"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"
+                />
+              </svg>
+            </div>
+          </div>
+          <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Smart Gear</a></li>
+            <li><a href="#">Accessories</a></li>
+          </ul>
+          <!-- Search Bar -->
+          <div class="search-container hide-mobile">
+            <input
+              type="text"
+              id="search"
+              placeholder="Search for products..."
+            />
+          </div>
+          <!-- Filter Section -->
+
+          <div class="filters">
+            <div class="border-b pb-8">
+              <button class="text-underline">clear all</button>
+            </div>
+            <h3 class="py-8">Categories</h3>
+            <div class="flex flex-wrap filter-lists border-b">
+              <label
+                ><input type="checkbox" value="jewelery" /> Jewellery</label
+              >
+              <label
+                ><input type="checkbox" value="electronics" />
+                Electronics</label
+              >
+              <label
+                ><input type="checkbox" value="mens-clothing" /> Men’s
+                Clothing</label
+              >
+              <label
+                ><input type="checkbox" value="womens-clothing" /> Women’s
+                Clothing</label
+              >
+            </div>
+          </div>
+        </div>
+        <div class="cart">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            class="bi bi-bag"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"
+            />
+          </svg>
+          <span class="cart-badge">10</span>
+        </div>
+      </nav>
+    </header>
+    <section class="banner">
+      <div class="banner-content">
+        <h1>Men's Outerwear</h1>
+        <div class="underline"></div>
+      </div>
+    </section>
+
+    <div class="container flex flex-wrap">
+      <div class="breadcrumb">
+        <a href="#">Clothing</a> / <a href="#">Women’s</a> /
+        <span>Outerwear</span>
+      </div>
+      <aside class="sidebar hide-mobile">
+        <h2 class="border-b">Filters</h2>
+        <div class="filters">
+          <h3 class="py-8 filters-lebel">Categories</h3>
+          <div class="flex flex-wrap filters-lists border-b column">
+            <label> <input type="checkbox" value="jewelery" /> Jewellery</label>
+            <label
+              ><input type="checkbox" value="electronics" /> Electronics</label
+            >
+            <label
+              ><input type="checkbox" value="mens-clothing" /> Men’s
+              Clothing</label
+            >
+            <label
+              ><input type="checkbox" value="womens-clothing" /> Women’s
+              Clothing</label
+            >
+          </div>
+        </div>
+      </aside>
+      <main class="main">
+        <div class="flex space-between">
+          <div id="productCount"></div>
+          <div class="sorting text-right">
+            <select class="form-select" id="sort">
+              <option default>Sort by Price</option>
+              <option value="low-to-high">Low to High</option>
+              <option value="high-to-low">High to Low</option>
+            </select>
+          </div>
+        </div>
+        <div id="product-grid" class="flex flex-wrap"></div>
+      </main>
+    </div>
+    <footer>
+      <p>&copy; 2025 Store. All rights reserved.</p>
+    </footer>
+    <script src="./scripts/app.js" defer></script>
+    <script src="./scripts/utils.js" defer></script>
+  </body>
+</html>
