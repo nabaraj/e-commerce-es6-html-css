@@ -56,14 +56,7 @@
             <li><a href="#">Smart Gear</a></li>
             <li><a href="#">Accessories</a></li>
           </ul>
-          <!-- Search Bar -->
-          <div class="search-container hide-mobile" id="search-bar">
-            <input
-              type="text"
-              id="search"
-              placeholder="Search for products..."
-            />
-          </div>
+
           <!-- Filter Section -->
 
           <div class="filters">
@@ -125,32 +118,44 @@
       </div>
     </section>
 
-    <div class="container flex flex-wrap">
+    <div class="container flex flex-wrap pb-32">
       <div class="breadcrumb">
         <a href="#">Clothing</a> / <a href="#">Women’s</a> /
         <span>Outerwear</span>
       </div>
-      <aside class="sidebar hide-mobile">
-        <h2 class="border-b">Filters</h2>
+
+      <aside class="sidebar" id="mobileFilter">
+        <div class="mobile-filter-head flex space-between">
+          <div class="filter-title">Filters</div>
+        </div>
+        <!-- <h2 class="border-b">Filters</h2> -->
         <div class="filters" id="dynamic-filters">
-          <h3 class="py-8 filters-lebel">Categories</h3>
+          <h3 class="py-8 filters-label">Categories</h3>
           <div class="flex flex-wrap filters-lists border-b column">
             <label> <input type="checkbox" value="jewelery" /> Jewellery</label>
-            <label
-              ><input type="checkbox" value="electronics" /> Electronics</label
+            <label>
+              <input type="checkbox" value="electronics" /> Electronics</label
             >
-            <label
-              ><input type="checkbox" value="mens-clothing" /> Men’s
+            <label>
+              <input type="checkbox" value="mens-clothing" /> Men’s
               Clothing</label
             >
-            <label
-              ><input type="checkbox" value="womens-clothing" /> Women’s
+            <label>
+              <input type="checkbox" value="womens-clothing" /> Women’s
               Clothing</label
             >
           </div>
         </div>
       </aside>
       <main class="main">
+        <!-- Search Bar -->
+        <div class="search-container w-full pb-32">
+          <input
+            type="search"
+            id="search-bar"
+            placeholder="Search for products..."
+          />
+        </div>
         <div class="flex space-between flex-wrap">
           <div id="openFilter" class="hide-desktop-flex justify-center pb-32">
             <img src="./assets/images/sliders.svg" alt="" />
@@ -181,8 +186,57 @@
         </div>
       </main>
     </div>
-    <footer>
-      <p>&copy; 2025 Store. All rights reserved.</p>
+    <footer class="footer border-t">
+      <div class="flex space-between footer-navigation container">
+        <div class="navItem">
+          <h3>Account</h3>
+          <ul>
+            <li class="pointer">Sign In</li>
+            <li class="pointer">Register</li>
+            <li class="pointer">Order Status</li>
+            <li class="pointer">Returns</li>
+          </ul>
+        </div>
+        <div class="navItem">
+          <h3>About Us</h3>
+          <ul>
+            <li class="pointer">Our Story</li>
+            <li class="pointer">Email Sign Up</li>
+            <li class="pointer">Give Back</li>
+          </ul>
+        </div>
+        <div class="navItem">
+          <h3>Help</h3>
+          <ul>
+            <li class="pointer">Live Chat</li>
+            <li class="pointer">Contact us</li>
+            <li class="pointer">Order Status</li>
+            <li class="pointer">Returns</li>
+          </ul>
+        </div>
+        <div class="navItem">
+          <h3>Follow Us!</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+            eiusmod tempor incididunt ut labore et dolore.
+          </p>
+          <div class="flex social">
+            <div><img src="./assets/images/instagram.svg" alt="" /></div>
+            <div><img src="./assets/images/facebook.svg" alt="" /></div>
+            <div><img src="./assets/images/twitter.svg" alt="" /></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-terms border-t pb-32">
+        <div class="container flex space-between pt-32">
+          <div>VENIA</div>
+          <div class="text-center">
+            <span class="text-underline">Terms of Use</span>
+            <span class="text-underline">Privacy Policy</span>
+          </div>
+          <div>© Company Name Address Ave, City Name, State ZIP</div>
+        </div>
+      </div>
     </footer>
     <script src="./scripts/app.js" defer></script>
     <script src="./scripts/utils.js" defer></script>

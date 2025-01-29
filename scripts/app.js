@@ -28,9 +28,17 @@ const fetchData = async (url) => {
 const updateProductCount = (length) => {
   productCount.innerText = `${length} Results`;
 };
+
 // Render products dynamically
-const renderProducts = ({ products = [], error = null }) => {
+const renderProducts = ({ products = [], error = null, isLoading = false }) => {
   const productGrid = document.getElementById("product-grid");
+
+  if (isLoading) {
+    productGrid.innerHTML = `<p class="error-message text-center w-full">Loading Products...</p>`;
+    loadMore.classList.add("hidden");
+    sort.classList.add("hidden");
+    return;
+  }
 
   if (error) {
     productGrid.innerHTML = `<p class="error-message text-center w-full">Error: ${error}</p>`;
@@ -54,7 +62,7 @@ const renderProducts = ({ products = [], error = null }) => {
       (product) => `
         <div class="product-card">
           <div class="product-image">
-            <img src="${product.image}" alt="${product.title}" >
+            <img src="${product.image}" loading="lazy" alt="${product.title}" >
           </div>
           <h3 class="product-title">${product.title}</h3>
           <p class="product-price">$${product.price}</p>
@@ -159,6 +167,12 @@ const applyFilters = () => {
 
   // Paginate results
   displayedProducts = filteredProducts.slice(0, ITEMS_PER_PAGE * currentPage);
+  sort.classList.remove("hidden");
+  if (displayedProducts.length < filteredProducts.length) {
+    loadMore.classList.remove("hidden");
+  } else {
+    loadMore.classList.add("hidden");
+  }
   renderProducts({ products: displayedProducts });
 };
 
@@ -210,9 +224,10 @@ const handleLoadMore = () => {
 
 // Initialize the application
 const init = async () => {
+  renderProducts({ isLoading: true });
   const result = await fetchData(API_URL);
   if (result.error) {
-    renderProducts({ error: result.error });
+    renderProducts({ error: result.error, isLoading: false });
   } else {
     allProducts = result;
     generateFilters();
