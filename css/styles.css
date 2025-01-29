@@ -31,13 +31,6 @@ picture {
   display: block;
 }
 
-/* Reset tables */
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
-  width: 100%;
-}
-
 /* Reset form elements */
 input,
 textarea,
@@ -61,15 +54,6 @@ body {
   min-height: 100vh;
 }
 
-/* Remove animations and transitions for users who prefer reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
-  }
-}
 body {
   font-size: 16px;
 }
@@ -196,7 +180,6 @@ body {
   visibility: hidden;
 }
 
-/* Utility classes for mobile and desktop visibility */
 /* Show on mobile, hide on desktop */
 .show-mobile {
   display: none; /* Hidden by default */
@@ -218,7 +201,7 @@ body {
 }
 /* Show on desktop, hide on mobile */
 .show-desktop {
-  display: block; /* Visible by default */
+  display: block;
 }
 
 .show-desktop-flex {
@@ -256,13 +239,11 @@ header {
   justify-content: space-between;
 }
 
-/* Logo */
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
 }
 
-/* Hamburger Menu Icon */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -298,7 +279,8 @@ header {
   height: 3px;
   background-color: #1363df;
 }
-.nav-links li.active:after, .nav-links li:hover:after {
+.nav-links li.active:after,
+.nav-links li:hover:after {
   transition: all 0.2s linear;
   content: "";
   display: block;
@@ -387,7 +369,7 @@ header {
     margin-top: 1rem;
   }
 }
-/* Navigation Links */
+
 /* Cart Section */
 .cart {
   position: relative;
