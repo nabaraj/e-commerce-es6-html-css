@@ -93,33 +93,10 @@ The UI adapts to different screen sizes with the following breakpoints:
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/repository-name.git
+   git clone https://github.com/nabaraj/e-commerce-es6-html-css
    ```
 2. Navigate to the project folder:
    ```sh
-   cd repository-name
+   cd e-commerce-es6-html-css
    ```
 3. Open `index.html` in a browser
-
----
-
-## 📡 Deployment (GitHub Pages)
-
-1. **Enable GitHub Pages** in repository settings
-2. **Push changes to `main` branch**
-3. Access the live site at:
-   ```
-   https://your-username.github.io/repository-name
-   ```
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! Feel free to fork the repo and submit a pull request.
-
----
-
-## 📄 License
-
-This project is licensed under the **MIT License**.
