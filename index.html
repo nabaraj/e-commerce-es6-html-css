@@ -30,7 +30,7 @@
           id="responsive-navigation"
         >
           <div class="mobile-navigation-head flex space-between">
-            <div class="show-mobile">Filters</div>
+            <div class="show-mobile">Navigation</div>
             <div
               class="closeMobileNavigation show-mobile"
               id="mobile-navigation-close"
@@ -59,7 +59,7 @@
 
           <!-- Filter Section -->
 
-          <div class="filters">
+          <!-- <div class="filters">
             <div class="border-b pb-8">
               <button class="text-underline">clear all</button>
             </div>
@@ -81,7 +81,7 @@
                 Clothing</label
               >
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="cart">
           <svg
@@ -157,28 +157,22 @@
           />
         </div>
         <div class="flex space-between flex-wrap">
-          <div id="openFilter" class="hide-desktop-flex justify-center pb-32">
-            <img src="./assets/images/sliders.svg" alt="" />
-            <span class="pl-2">Filter Results</span>
-          </div>
-          <div class="hide-desktop-flex justify-center pb-32">
-            <span class="flex iconImage center-align">
-              <img src="./assets/images/arrow-down.svg" />
-              <img src="./assets/images/arrow-up.svg" />
-            </span>
-            <span class="pl-2">Sort Products</span>
-          </div>
-          <div
-            id="productCount"
-            class="md:w-auto full-width text-center pb-32 mx:pb-0"
-          ></div>
-          <div class="sorting text-right hide-mobile">
+          <div class="sorting text-right">
             <select class="form-select" id="sort">
               <option value="default">Sort by</option>
               <option value="low-to-high">Price: Low to High</option>
               <option value="high-to-low">Price: High to Low</option>
             </select>
           </div>
+          <div id="openFilter" class="hide-desktop-flex justify-center">
+            <img src="./assets/images/sliders.svg" alt="" />
+            <span class="pl-2">Filter Results</span>
+          </div>
+
+          <div
+            id="productCount"
+            class="md:w-auto full-width text-center pb-32 mx:pb-0"
+          ></div>
         </div>
         <div id="product-grid" class="flex flex-wrap"></div>
         <div class="loadMore text-center">
@@ -229,12 +223,14 @@
       </div>
       <div class="footer-terms border-t pb-32">
         <div class="container flex space-between pt-32">
-          <div>VENIA</div>
+          <div class="footer-logo">VENIA</div>
           <div class="text-center">
-            <span class="text-underline">Terms of Use</span>
-            <span class="text-underline">Privacy Policy</span>
+            <span class="text-underline px-4">Terms of Use</span>
+            <span class="text-underline px-4">Privacy Policy</span>
           </div>
-          <div>© Company Name Address Ave, City Name, State ZIP</div>
+          <div class="footer-copyright">
+            © Company Name Address Ave, City Name, State ZIP
+          </div>
         </div>
       </div>
     </footer>

@@ -8,6 +8,7 @@ let activeFilters = { category: [], availability: true };
 let priceRange = { min: 0, max: Infinity };
 let searchQuery = "";
 let sortOption = "default";
+
 const loadMore = document.getElementById("load-more");
 const sort = document.getElementById("sort");
 const productCount = document.getElementById("productCount");
@@ -25,6 +26,7 @@ const fetchData = async (url) => {
     return { error: error.message };
   }
 };
+
 const updateProductCount = (length) => {
   productCount.innerText = `${length} Results`;
 };
@@ -42,15 +44,15 @@ const renderProducts = ({ products = [], error = null, isLoading = false }) => {
 
   if (error) {
     productGrid.innerHTML = `<p class="error-message text-center w-full">Error: ${error}</p>`;
-    loadMore.remove();
-    sort.remove();
+    loadMore.classList.add("hidden");
+    sort.classList.add("hidden");
     return;
   }
 
   if (!products || products.length === 0) {
     productGrid.innerHTML = `<p class="error-message text-center w-full">No products found.</p>`;
-    loadMore.remove();
-    sort.remove();
+    loadMore.classList.add("hidden");
+    sort.classList.add("hidden");
     updateProductCount(products.length);
     return;
   }
@@ -85,41 +87,49 @@ const renderProducts = ({ products = [], error = null, isLoading = false }) => {
 // Generate filters dynamically
 const generateFilters = () => {
   const filterContainer = document.getElementById("dynamic-filters");
+  let maxPrice = 0;
   const categories = [
-    ...new Set(allProducts.map((product) => product.category))
+    ...new Set(
+      allProducts.map((product) => {
+        maxPrice = Math.ceil(Math.max(maxPrice, product.price));
+        return product.category;
+      })
+    )
   ];
 
   filterContainer.innerHTML = `
-    <h3 class="py-8 filters-lebel">Categories</h3>
+    <h3 class="py-8 filters-label">Categories</h3>
     <div class="flex flex-wrap filters-lists border-b column">
-    ${categories
-      .map(
-        (category) => `
+      ${categories
+        .map(
+          (category) => `
       <label>
         <input type="checkbox" value="${category}" class="category-filter" />
         ${category.charAt(0).toUpperCase() + category.slice(1)}
       </label>
     `
-      )
-      .join("")}
+        )
+        .join("")}
     </div>
     <h3 class="py-8 filters-lebel">Price Range</h3>
-    <div class="flex flex-wrap"><label>
-     <div>Min:</div> 
-     <div><input type="number" id="price-min" placeholder="0" min="0" /></div>
-    </label>
-    <label>
-      Max: 
-      <div><input type="number" id="price-max" placeholder="1000" min="0" /></div>
-    </label></div>
-    <h3 class="py-8 filters-lebel">Availability</h3>
+    <div class="price-range flex">
+      <label>
+        Min: <input type="number" id="price-min" placeholder="0" min="0" />
+      </label>
+      <label>
+        Max: <input type="number" id="price-max" placeholder="${
+          maxPrice + 1000
+        }" min="0" />
+      </label>
+    </div>
+    <h3 class="py-8 filters-label">Availability</h3>
     <label>
       <input type="checkbox" id="availability-filter" checked />
       In Stock
     </label>
   `;
 
-  // Add filter event listeners
+  // Add event listeners for filters
   document.querySelectorAll(".category-filter").forEach((checkbox) => {
     checkbox.addEventListener("change", handleCategoryFilterChange);
   });
@@ -134,7 +144,7 @@ const generateFilters = () => {
     .addEventListener("change", handleAvailabilityFilterChange);
 };
 
-// Apply filters and sorting
+// Apply filters and sorting, including search
 const applyFilters = () => {
   let filteredProducts = allProducts;
 
@@ -158,6 +168,15 @@ const applyFilters = () => {
     );
   }
 
+  // Apply search filter
+  if (searchQuery) {
+    filteredProducts = filteredProducts.filter(
+      (product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        product.category.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+  }
+
   // Apply sorting
   if (sortOption === "low-to-high") {
     filteredProducts.sort((a, b) => a.price - b.price);
@@ -176,6 +195,13 @@ const applyFilters = () => {
   renderProducts({ products: displayedProducts });
 };
 
+// Handle search input change
+const handleSearch = (event) => {
+  searchQuery = event.target.value;
+  currentPage = 1;
+  applyFilters();
+};
+
 // Handle category filter change
 const handleCategoryFilterChange = (event) => {
   const category = event.target.value;
@@ -186,7 +212,6 @@ const handleCategoryFilterChange = (event) => {
       (item) => item !== category
     );
   }
-  currentPage = 1;
   applyFilters();
 };
 
@@ -197,22 +222,18 @@ const handlePriceRangeChange = () => {
 
   priceRange.min = minInput ? parseFloat(minInput) : 0;
   priceRange.max = maxInput ? parseFloat(maxInput) : Infinity;
-
-  currentPage = 1;
   applyFilters();
 };
 
 // Handle availability filter change
 const handleAvailabilityFilterChange = (event) => {
   activeFilters.availability = event.target.checked;
-  currentPage = 1;
   applyFilters();
 };
 
 // Handle sorting
 const handleSortChange = (event) => {
   sortOption = event.target.value;
-  currentPage = 1;
   applyFilters();
 };
 
@@ -236,6 +257,7 @@ const init = async () => {
 };
 
 // Add event listeners
+document.getElementById("search-bar").addEventListener("input", handleSearch);
 document.getElementById("sort").addEventListener("change", handleSortChange);
 loadMore.addEventListener("click", handleLoadMore);
 

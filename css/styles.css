@@ -161,6 +161,11 @@ body {
   padding-left: 2px;
 }
 
+.px-4 {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
 .pb-32 {
   padding-bottom: 32px;
 }
@@ -273,10 +278,8 @@ header {
   transition: all 0.3s;
 }
 
-/* Hide navigation and filters by default in mobile view */
 .nav-links {
   list-style: none;
-  display: none;
   align-items: center;
   gap: 1.5rem;
   margin: 0;
@@ -423,6 +426,15 @@ header {
   border: 1px solid #b5b7bc;
 }
 
+.sorting {
+  min-width: 50%;
+  flex-basis: 50%;
+  order: 2;
+}
+.sorting .form-select {
+  max-width: 100%;
+}
+
 #product-grid {
   margin-left: -16px;
   margin-right: -16px;
@@ -485,8 +497,29 @@ header {
   cursor: pointer;
 }
 
+#openFilter {
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  #openFilter {
+    display: none;
+  }
+}
+#openFilter img {
+  width: 25px;
+  height: 25px;
+}
+
 #productCount {
   color: #172026;
+  order: 3;
+  padding-top: 16px;
+}
+@media (min-width: 1024px) {
+  #productCount {
+    order: 1;
+  }
 }
 
 @media (min-width: 769px) {
@@ -517,7 +550,7 @@ header {
 .sidebar .filters {
   color: #181c24;
 }
-.sidebar .filters-label {
+.sidebar .filters-lebel {
   font-size: 16px;
   font-weight: 600;
 }
@@ -670,6 +703,47 @@ header {
 }
 .footer-navigation .navItem p {
   padding-bottom: 10px;
+}
+.footer-terms .container {
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+@media (min-width: 1024px) {
+  .footer-terms .container {
+    flex-direction: row;
+  }
+}
+.footer-terms .container > div {
+  min-width: 100%;
+  flex-basis: 100%;
+  text-align: left;
+  flex: 1;
+  padding-bottom: 16px;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .footer-terms .container > div {
+    min-width: 33.33%;
+    flex-basis: 33.33%;
+  }
+}
+.footer-terms .container > div.footer-logo {
+  order: 10;
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .footer-terms .container > div.footer-logo {
+    text-align: left;
+    order: 0;
+  }
+}
+.footer-terms .container > div.footer-copyright {
+  text-align: center;
+}
+@media (min-width: 1024px) {
+  .footer-terms .container > div.footer-copyright {
+    text-align: right;
+  }
 }
 .footer .social > div {
   padding: 0 5px;
