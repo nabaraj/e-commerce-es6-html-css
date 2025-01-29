@@ -745,7 +745,7 @@ header {
     text-align: right;
   }
 }
-.footer .social > div {
+.footer .social > a {
   padding: 0 5px;
 }
 
