@@ -73,8 +73,8 @@ body {
 .container {
   max-width: 1536px;
   margin: 0 auto;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
 .flex {
@@ -149,7 +149,9 @@ body {
   padding-left: 4px;
   padding-right: 4px;
 }
-
+.pb-0{
+  padding-bottom: 0 !important;
+}
 .pb-32 {
   padding-bottom: 32px;
 }
@@ -341,20 +343,20 @@ header {
     padding: 1rem;
   }
   .mobile-navigation {
-    display: none;
-  }
-  .mobile-navigation.active {
     display: block;
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    left: 0;
-    right: 0;
+    right: -75%;
     top: 0;
     background-color: #ffffff;
     color: #000000;
     z-index: 1000;
-    width: 100%;
+    width: 75%;
     overflow: auto;
+    transition: transform 0.3s ease-in-out;
+  }
+  .mobile-navigation.active {
+   transform: translateX(-100%);
   }
   .mobile-navigation.active .nav-links {
     flex-wrap: wrap;
@@ -367,6 +369,9 @@ header {
   }
   .filters {
     margin-top: 1rem;
+  }
+  .nav-links li:after{
+    display: none;
   }
 }
 
@@ -395,6 +400,7 @@ header {
 @media (max-width: 768px) {
   .navbar {
     flex-wrap: wrap;
+    padding:1rem 15px;
   }
   .search-container {
     margin: 1rem 0;
